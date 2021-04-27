@@ -48,19 +48,23 @@ public class SLR {
         //Calculates b
         b = yAvg - a * xAvg;
         System.out.println("Value found for b = "+ b);
+
+        System.out.println(String.format("y_est = %.2f + %.2fx", b, a));
     }
 
     //Method to predict given x
     public static double predict(double x){
-        double y = 1;
-        System.out.println("predict");
-        return y;
+        return b + a * x;
     }
 
     //Method to predict given an array X
     public static double[] predict(double[] X){
-        double[] y = {1, 2};
-        System.out.println("2");
+        double[] y = new double[X.length];
+        int i = 0;
+        for(double x : X){
+            y[i] = predict(x);
+            i++;
+        }
         return y;
     }
 
@@ -79,6 +83,16 @@ public class SLR {
         };
         SLR slr = new SLR();
         slr.train(dataSet);
+        
+        // Predictions
+        double yPredicted = slr.predict(62);
+        System.out.println(yPredicted);
+
+        double[] test = {58,57};
+        double[] results = slr.predict(test);
+        for(double v:results){
+            System.out.println(v);
+        }
     }
 
 }
