@@ -5,6 +5,8 @@
 *   217758632
 *
 ************************************/
+import java.util.Scanner;
+
 public class SLR {   
     //Constants of prediction eq
     private static double a;
@@ -70,6 +72,7 @@ public class SLR {
 
     public static void main(String[] args){
         System.out.println("SLR Predictor");
+        Scanner scn = new Scanner(System.in);
         double[][] dataSet = {
             {23, 651},
             {26, 762},
@@ -84,15 +87,10 @@ public class SLR {
         SLR slr = new SLR();
         slr.train(dataSet);
         
-        // Predictions
-        double yPredicted = slr.predict(62);
-        System.out.println(yPredicted);
-
-        double[] test = {58,57};
-        double[] results = slr.predict(test);
-        for(double v:results){
-            System.out.println(v);
-        }
+        // Predict Dynamically
+        System.out.println("Insert the x value to predict y:");
+        double xVal = scn.nextDouble();
+        double yHat = slr.predict(xVal);
+        System.out.println("The y value using x=" + xVal + " is: " + yHat);
     }
-
 }
